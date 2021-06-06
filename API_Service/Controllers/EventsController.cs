@@ -22,6 +22,10 @@ namespace API_Service.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Request API do pozyskania listy eventów
+        /// </summary>
+        /// <returns>Kod odpowiedzi HTTP zależny od rezultatu oraz lista eventów </returns>
         // GET: api/<EventsController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EventModel>>> GetAsync()
@@ -29,6 +33,11 @@ namespace API_Service.Controllers
             return await _context.EVENT_NAMES.ToListAsync();
         }
 
+        /// <summary>
+        /// Request API do pozyskania listy uczestników wybranego eventu
+        /// </summary>
+        /// <param name="eventName"> Nazwa eventu </param>
+        /// <returns> Kod odpowiedzi HTTP zależny od rezultatu oraz lista uczestników </returns>
         // GET: api/<EventsController>/5
         [HttpGet("{eventName}")]
         public async Task<ActionResult<IEnumerable<ParticipantModel>>> GetAsync(string eventName)
@@ -42,9 +51,14 @@ namespace API_Service.Controllers
             return Ok(delList);
         }
 
+        /// <summary>
+        /// Request API do tworzenia eventu
+        /// </summary>
+        /// <param name="eventName"> Nazwa nowego eventu </param>
+        /// <returns> Kod odpowiedzi HTTP zależny od rezultatu </returns>
         // POST api/<EventsController>
         [HttpPost("{eventName}")]
-        public async Task<ActionResult<EventModel>> PostAsync(string eventName)
+        public async Task<ActionResult> PostAsync(string eventName)
         {
             var new_event = new EventModel(eventName);
 
@@ -61,9 +75,17 @@ namespace API_Service.Controllers
                 else throw;
             }
 
-            return Ok(new_event);
+            return Ok();
         }
 
+        /// <summary>
+        /// Request API do dodawania uczestników
+        /// </summary>
+        /// <param name="eventName"> Nazwa eventu do którego należy przypisać uczestnika </param>
+        /// <param name="fname"> Imię uczestnika </param>
+        /// <param name="lname"> Nazwisko uczestnika </param>
+        /// <param name="email"> Adres email uczestnika </param>
+        /// <returns> Kod odpowiedzi HTTP zależny od rezultatu </returns>
         // PUT api/<EventsController>/5
         [HttpPut("{eventName}")]
         public async Task<ActionResult> PutAsync(string eventName, string fname, string lname, string email)
@@ -107,6 +129,11 @@ namespace API_Service.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Request API do usuwania eventu
+        /// </summary>
+        /// <param name="eventName"> Nazwa Eventu </param>
+        /// <returns> Kod odpowiedzi HTTP zależny od rezultatu </returns>
         // DELETE api/<EventsController>/5
         [HttpDelete("{eventName}")]
         public async Task<ActionResult> Delete(string eventName)
@@ -127,11 +154,22 @@ namespace API_Service.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Czy event został już utworzony
+        /// </summary>
+        /// <param name="name"> Nazwa eventu </param>
+        /// <returns> bool informujący o tym czy taki event już istnieje </returns>
         private  bool EventExists(string name)
         {
             return _context.EVENT_NAMES.Any(e => e.Event_name == name);
         }
 
+        /// <summary>
+        /// Czy uczestnik o danym adresie email jest juz zapisany na dany event
+        /// </summary>
+        /// <param name="eventName"> Nazwa eventu </param>
+        /// <param name="email"> Adres email </param>
+        /// <returns> bool informujący o tym czy taki wpis w tablicy uczestników już istnieje </returns>
         private bool ParticipantExists(string eventName, string email)
         {
             return  _context.PARTICIPANTS.Any(p => p.Event_Name == eventName && p.EMail == email);

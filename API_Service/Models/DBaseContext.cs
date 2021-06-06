@@ -21,8 +21,14 @@ namespace API_Service.Models
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <summary>
+        /// Odniesienie do tablicy eventów
+        /// </summary>
         public DbSet<EventModel> EVENT_NAMES { get; set; }
 
+        /// <summary>
+        /// Odniesienie do tablicy uczestników
+        /// </summary>
         public DbSet<ParticipantModel> PARTICIPANTS { get; set; }
     }
 }

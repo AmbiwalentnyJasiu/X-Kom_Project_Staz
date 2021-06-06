@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace API_Service.Models
 {
+    /// <summary>
+    /// Klasa reprezentująca pojedynczy wpis w tablicy eventów
+    /// </summary>
     public class EventModel
     {
         public EventModel() { }
@@ -10,8 +13,15 @@ namespace API_Service.Models
         {
             Event_name = event_name;
         }
+
+        /// <summary>
+        /// Nazwa eventu
+        /// </summary>
         public string Event_name { get; set; }
 
+        /// <summary>
+        /// Obecna liczba zapisanych uczestników
+        /// </summary>
         public int Participants_count { get; set; }
     }
 

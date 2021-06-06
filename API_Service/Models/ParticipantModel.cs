@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace API_Service.Models
 {
+    /// <summary>
+    /// Klasa reprezentujaca pojedynczy wpis w tablicy uczestników
+    /// </summary>
     public class ParticipantModel
     {
         public ParticipantModel() { }
@@ -14,14 +17,29 @@ namespace API_Service.Models
             EMail = EMAIL;
         }
 
+        /// <summary>
+        /// SQL Identity dla wpisu
+        /// </summary>
         public int Entry_ID { get; set; }
 
+        /// <summary>
+        /// Nazwa eventu którego dotyczy wpis
+        /// </summary>
         public string Event_Name { get; set; }
 
+        /// <summary>
+        /// Imie uczestnika
+        /// </summary>
         public string F_Name { get; set; }
 
+        /// <summary>
+        /// Nazwisko uczestnika
+        /// </summary>
         public string L_Name { get; set; }
 
+        /// <summary>
+        /// Adres email uczestnika
+        /// </summary>
         public string EMail { get; set; }
     }
 
