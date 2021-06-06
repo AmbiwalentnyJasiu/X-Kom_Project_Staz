@@ -82,13 +82,12 @@ namespace API_Service.Controllers
         /// Request API do dodawania uczestników
         /// </summary>
         /// <param name="eventName"> Nazwa eventu do którego należy przypisać uczestnika </param>
-        /// <param name="fname"> Imię uczestnika </param>
-        /// <param name="lname"> Nazwisko uczestnika </param>
+        /// <param name="name"> Imię uczestnika </param>
         /// <param name="email"> Adres email uczestnika </param>
         /// <returns> Kod odpowiedzi HTTP zależny od rezultatu </returns>
         // PUT api/<EventsController>/5
         [HttpPut("{eventName}")]
-        public async Task<ActionResult> PutAsync(string eventName, string fname, string lname, string email)
+        public async Task<ActionResult> PutAsync(string eventName, string name, string email)
         {
             var _event = await _context.EVENT_NAMES.FindAsync(eventName);
 
@@ -96,7 +95,7 @@ namespace API_Service.Controllers
 
             if (_event.Participants_count == 25) return BadRequest();
 
-            var _participant = new ParticipantModel(eventName, fname, lname, email);
+            var _participant = new ParticipantModel(eventName, name, email);
 
             if (ParticipantExists(eventName, email)) return Conflict();
 
