@@ -1,0 +1,28 @@
+Baza{
+  Spotkanie1{
+    Uczestnik1[Imię,nazwisko,email]
+    ...
+    Uczestnik25[Imię,nazwisko,email]
+  }
+  Spotkanie2{
+    Uczestnik1[Imię,nazwisko,email]
+    ...
+    Uczestnik25[Imię,nazwisko,email]
+  }
+  ...
+  SpotkanieX{
+    Uczestnik1[Imię,nazwisko,email]
+    ...
+    Uczestnik25[Imię,nazwisko,email]
+  }
+}
+
+Maks 25 uczestników
+
+Imię, nazwisko, email wymagane.
+
+Obsługiwane procedury:
+-POST - utworzenie tablicy dla danego spotkania (string z nazwą tablicy)
+-DELETE - usunięcie tablicy spotkania (string z nazwą tablicy)
+-GET all - lista spotkań 
+-PUT - dodanie wpisu do odpowiedniej tablicy (string z nazwą tablicy, obiekt typu uczestnik)
