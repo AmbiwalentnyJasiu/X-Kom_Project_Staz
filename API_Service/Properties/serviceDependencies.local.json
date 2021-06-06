@@ -8,6 +8,11 @@
       "type": "mssql.local",
       "connectionId": "SqlDbConnectionString",
       "secretStore": "LocalSecretsFile"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "AppSettings/ConnectionString",
+      "secretStore": "LocalSecretsFile"
     }
   }
 }
